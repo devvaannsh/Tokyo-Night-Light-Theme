@@ -1,0 +1,414 @@
+/*
+ * Tokyo Day Light Theme
+ * 
+ * Experience the bright and vibrant essence of Tokyo Days in Phoenix Code.
+ * A light variant of Tokyo Night theme.
+ * 
+ * Created by - Pluto (https://github.com/devvaannsh)
+ * Color Scheme Credits - Enkia (https://github.com/enkia)   
+ */
+
+/* Core UI Colors
+ * These variables control the fundamental visual elements of the editor
+ */
+@background: #eaebee;
+@foreground: #343b58; // (Not for font color, but UI elements)
+
+@comment: #9699a3;
+@comment-active: #6b6e77; // Applied when cursor is on a commented line
+
+@cursor: #343b58;
+
+/* Active Line Highlighting */
+@activeline-background: #d0cece;
+@activeline-foreground: #6b6e77;
+
+/* Selected Code Highlighting */
+@selected-background: #9ea8cd4d;
+
+/* UI Component Colors */
+// Title Bar
+@titlebar-background: #d5d6db;
+@titlebar-foreground: #343b58;
+
+// Status Bar
+@status-bar-background: #d5d6db;
+@status-bar-foreground: #343b58;
+
+// Sidebar - Houses file tree and working files
+@sidebar-background: #d5d6db;
+@sidebar-foreground: #000;
+@sidebar-active-file-foreground: #1361e5; // Highlights the current working file
+
+// Toolbar - Vertical panel on the right
+@toolbar-background: #8289ad;
+
+/* Editor Gutter 
+ * Controls the area containing line numbers and code folding indicators
+ */
+@gutter-background: #eaebee;
+@active-gutter-background: #d5d6db;
+@line-number: #9699a3;
+@active-line-number: #565a6e;
+
+@border: #a1a6c5; // Used for UI element separation
+
+/* Search Highlighting
+ * These colors are used when using the find/replace functionality
+ */
+@searching-background: #b15c00;
+@searching-foreground: #e9ecf4;
+@searching-match-background: #934800;
+@searching-match-foreground: #e9ecf4;
+
+/* Brackets Highlighting
+ * These colors are also used for Matching-Tags
+ */
+@matchingbracket-background: #b8c0e055;
+@matchingbracket-color: #565a6e;
+@active-matchingbracket-color: #343b58;
+@active-matchingbracket-background: #d5d6db;
+
+/* Syntax Highlighting
+ * These variables control the colors of different code elements in the editor.
+ */
+@keyword: #7c3aed; // More vibrant purple for keywords
+@definition: #2563eb; // Brighter blue for definitions
+@variable: #0284c7; // Distinct cyan-blue for global variables
+@variable2: #dc2626; // Bright red for local variables
+@variable3: #dc2626; // Keeping consistent with variable2
+@string: #16a34a; // Brighter green for strings
+@string2: #219c4f; // Distinct teal for special strings
+@tag: #2563eb; // Keeping consistent with definition color
+@type: #ca8a04; // Brighter gold for types
+@number: #c2410c; // More orange-red for numbers
+@operator: #4b5563; // Darker gray for operators
+@meta: #343b58; // Keeping as is for meta characters
+@attribute: #ea580c; // Distinct orange for attributes
+@property: #0891b2; // Keeping consistent with string2
+@link: #2563eb; // Keeping consistent with definition color
+@header: #be123c; // Deeper red for headers
+@error: #dc2626; // Bright red for errors
+@error-background: #dc26261a; // Keeping consistent error background
+
+
+ /* ------------------------------------------------------------------- */
+ /* Base Styles
+  * The following CSS rules implement the theme using the variables defined above.
+  * Modify with CAUTION. Only Modify if necessary.
+  */
+ // Styles the empty editor state
+ .content #editor-holder .not-editor {
+	 background-color: @background;
+ }
+ 
+ // Styles the header of each editor pane when multiple files are open
+ .content #editor-holder .pane-header {
+	 background-color: @background;
+	 color: @foreground;
+ }
+ 
+ /* Sidebar Styling */
+ // Applies consistent background to all sidebar elements
+ .main-view #sidebar,
+ .main-view #sidebar #mainNavBar,
+ .main-view #sidebar #working-set-list-container,
+ .main-view #sidebar #working-set-list-container .working-set-view-active,
+ .main-view #sidebar #working-set-list-container .working-set-header,
+ .main-view #sidebar #working-set-list-container .working-set-header-title,
+ .main-view #sidebar #working-set-list-container .sidebar-selection,
+ .main-view #sidebar #project-files-container,
+ .main-view #sidebar #project-files-header,
+ .main-view #sidebar #project-files-header #project-dropdown-toggle {
+	 background-color: @sidebar-background;
+ }
+
+// Reset the background styling from the selected file,
+// removes the default styling and sets the styling based on sidebar-background-color
+.main-view #sidebar #project-files-container .selected-node {
+	background-color: @sidebar-background;
+}
+ 
+ // Creates a visual separator between working files and project files
+ .main-view #sidebar #working-set-list-container {
+	 border-bottom: 1px solid @border;
+ }
+ 
+ // Removes default selection border in sidebar
+ .main-view #sidebar #working-set-list-container .sidebar-selection {
+	 border: none;
+ }
+ 
+ /* Sidebar Text Styling */
+ // Sets color for all text elements in the sidebar
+ .main-view #sidebar #project-files-container ul li a span,
+ .main-view #sidebar #project-files-header #project-dropdown-toggle span,
+ .main-view #sidebar #working-set-list-container .working-set-view .working-set-header span,
+ .main-view #sidebar #working-set-list-container .working-set-view .open-files-container ul li a span {
+	 color: @sidebar-foreground;
+	 text-shadow: none;
+ }
+ 
+ // Highlights the currently selected file and PhCode.io link
+ .main-view #sidebar #working-set-list-container .working-set-view .open-files-container ul .selected a span,
+ .main-view #sidebar #mainNavBar #phcode-io-main-nav {
+	 color: @sidebar-active-file-foreground;
+ }
+ 
+ /* Status Bar */
+ // Ensures consistent styling across all status bar elements
+ #status-bar,
+ #status-bar #status-info,
+ #status-bar #status-info #status-file,
+ #status-bar #status-indicators,
+ #status-bar #status-indicators #status-overwrite {
+	 background-color: @status-bar-background;
+	 color: @status-bar-foreground;
+ }
+ 
+ /* Toolbar */
+ #main-toolbar,
+ #main-toolbar #plugin-icons-bar {
+	 background-color: @toolbar-background;
+ }
+ 
+ /* Title Bar */
+ .content #titlebar {
+	 background-color: @titlebar-background;
+ }
+ 
+ .content #titlebar .nav li a {
+	 color: @titlebar-foreground;
+ }
+ 
+ /* Main Editor Window */
+ // Adds a separator between sidebar and editor content
+ .content {
+	 border-left: 1px solid @border;
+ }
+ 
+ // Sets the main editor background and text color
+ .CodeMirror,
+ .CodeMirror-scroll {
+	 background-color: @background;
+	 color: @foreground;
+	 line-height: 1.6;
+ }
+ 
+ // Styles for code selection
+ .CodeMirror-selected {
+	 background-color: @selected-background !important;
+ }
+ 
+ // Styles line numbers
+ .CodeMirror-linenumber {
+	 color: @comment;
+ }
+ 
+ // Code syntax highlighting
+ .cm-comment {
+	 color: @comment !important;
+ }
+ 
+ .cm-keyword {
+	 color: @keyword;
+ }
+ 
+ .cm-atom {
+	 color: @definition;
+ }
+ 
+ .cm-number {
+	 color: @number;
+ }
+ 
+ span.cm-def {
+	 color: @definition;
+ }
+ 
+ span.cm-variable {
+	 color: @variable;
+ }
+ 
+ span.cm-variable-2 {
+	 color: @variable2;
+ }
+ 
+ span.cm-variable-3 {
+	 color: @variable3;
+ }
+ 
+ .cm-link,
+ .cm-link.cm-variable-2 {
+	 color: @link !important;
+ }
+ 
+ .cm-string.cm-variable-2.cm-url {
+	 color: @link;
+ }
+ 
+ .cm-operator {
+	 color: @operator;
+ }
+ 
+ .cm-string {
+	 color: @string;
+ }
+ 
+ .cm-string-2 {
+	 color: @string2;
+ }
+ 
+ .cm-meta {
+	 color: @meta;
+ }
+ 
+ .cm-builtin {
+	 color: @definition;
+ }
+ 
+ .cm-tag {
+	 color: @tag;
+ }
+ 
+ .cm-attribute {
+	 color: @attribute;
+ }
+ 
+ .cm-header {
+	 color: @header;
+ }
+ 
+ .cm-hr {
+	 color: @comment;
+ }
+ 
+ .cm-link {
+	 color: @operator;
+ }
+ 
+ // Error highlighting
+ .cm-error {
+	 color: @error;
+	 background-color: @error-background;
+ }
+ 
+ .cm-qualifier {
+	 color: @variable;
+ }
+ 
+ .cm-property {
+	 color: @property;
+ }
+ 
+ .cm-quote {
+	 color: @keyword;
+ }
+ 
+ .cm-em {
+	 color: @definition;
+ }
+ 
+ .cm-strong {
+	 color: @number;
+ }
+ 
+ .cm-image {
+	 color: @tag;
+ }
+ 
+ .cm-image-marker {
+	 color: @definition;
+ }
+ 
+ .cm-type {
+	 color: @type;
+ }
+ 
+ // Styles for matching HTML tags
+ .CodeMirror-matchingtag {
+	 background-color: @matchingbracket-background;
+	 color: @matchingbracket-color !important;
+ }
+ 
+ // Enhanced visibility for matching tags in the active line
+ .CodeMirror-activeline .CodeMirror-matchingtag {
+	 color: @active-matchingbracket-color !important;
+	 background-color: @active-matchingbracket-background;
+ }
+ 
+ // Styles for matching brackets (parentheses, square brackets, etc.)
+ .CodeMirror-matchingbracket {
+	 outline: none;
+	 border-bottom: 1px solid @matchingbracket-color;
+	 color: @matchingbracket-color !important;
+	 background-color: @matchingbracket-background;
+ }
+ 
+ .CodeMirror-activeline .CodeMirror-matchingbracket {
+	 color: @active-matchingbracket-color !important;
+	 background-color: @active-matchingbracket-background;
+ }
+ 
+ // Code folding marker styling
+ .CodeMirror-foldmarker {
+	 background-color: @background;
+	 color: @foreground;
+	 border: none;
+ }
+ 
+ .CodeMirror-activeline .CodeMirror-foldmarker {
+	 background-color: @activeline-background;
+	 color: @activeline-foreground;
+	 border: none;
+ }
+ 
+ // Active line comment color
+ .CodeMirror-activeline .cm-comment {
+	 color: @comment-active !important;
+ }
+ 
+ // Cursor styling for normal mode
+ .CodeMirror .CodeMirror-cursor {
+	 border-left: 1px solid @cursor !important;
+ }
+ 
+ // Cursor styling for overwrite (insert) mode
+ .CodeMirror .CodeMirror-overwrite .CodeMirror-cursor {
+	 border-left: none !important;
+	 border-bottom: 1px solid @cursor;
+	 width: 1.2ex;
+ }
+ 
+ // Gutter styling (area with line numbers)
+ .CodeMirror .CodeMirror-gutters {
+	 background-color: @gutter-background;
+	 border-right: 0;
+ }
+ 
+ .CodeMirror-gutter-elt {
+	 color: @line-number !important;
+ }
+ 
+ .CodeMirror-activeline .CodeMirror-gutter-elt {
+	 background-color: @active-gutter-background !important;
+	 color: @active-line-number !important;
+ }
+ 
+ // Active line background
+ .CodeMirror-activeline-background {
+	 background-color: @activeline-background !important;
+ }
+ 
+ // Styles for search results
+ .CodeMirror-searching {
+	 background-color: @searching-background !important;
+	 color: @searching-foreground !important;
+ }
+ 
+ // Highlights the current search match
+ .CodeMirror-searching.searching-current-match {
+	 background-color: @searching-match-background !important;
+	 color: @searching-match-foreground !important;
+ }
+ 
